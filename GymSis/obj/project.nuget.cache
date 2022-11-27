@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "I+BeAE1VOJLocEcxmyuqzzaI2AlOeR9B5qIxLNv+lBoTvmcw3ywr2BYSSzpLpviEvxjVUbmHpS11BdwfxVINHw==",
+  "dgSpecHash": "ijoPoB9Bheh7sITmKezTmCZw7OpNevB0UjkwStn21C2U2wJMdVf81dbQMhlx6pODK1m10lvjXG0D1/2Gm2uKKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\carlo\\source\\repos\\Net\\GymSis\\GymSis\\GymSis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\bootstrap\\5.2.2\\bootstrap.5.2.2.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

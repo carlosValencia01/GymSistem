@@ -4,13 +4,17 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using GymSis.Models;
-
-
+using GymSis.Data;
 
 namespace GymSis.Controllers
 {
     public class AccessController : Controller
     {
+        private readonly ApplicationDbContext _db;
+        public AccessController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         public IActionResult Login()
         {
             ClaimsPrincipal claimUser = HttpContext.User;
@@ -28,8 +32,14 @@ namespace GymSis.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Gym modelLogin)
         {
-            //Here send check data against db 
-            if (modelLogin.Email == "user@example.com" && modelLogin.Password == "123")
+            //TODO-solo hacer el post si los campos tienen datos
+
+            List<Gym> gyms = _db.Gyms.ToList();
+            
+            var gymObj = gyms.Where(x => x.Email == modelLogin.Email && x.Password == modelLogin.Password).ToList();
+
+
+            if (gymObj.Count > 0)
             {
                 List<Claim> claims = new List<Claim>() {
                     new Claim(ClaimTypes.NameIdentifier, modelLogin.Email),
@@ -52,9 +62,15 @@ namespace GymSis.Controllers
                 return RedirectToAction("Index", "Home");
 
             }
-
-            ViewData["ValidateMessage"] = "User Not Found";
-            return View();
+            else if (modelLogin.Email != null && modelLogin.Password != null)
+            {
+                ViewData["ValidateMessage"] = "Usuario y/o contraseña incorrecto";
+                return View();
+            }
+            else
+            {           
+                return View();
+            }
         }
     }
 }
