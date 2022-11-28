@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GymSis</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GymSis.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <div class="nav-item navbar-nav me-auto mb-2 mb-lg-0  ">
+                    <a class="navbar-brand text-light position-absolute start-50 translate-middle" asp-controller="Home" asp-action="Index"><strong>Gim</strong>Sys</a>
+                    </div>          
+                </div>
+
+
+                <div class="d-flex">
+                    <div class="nav-item navbar-nav me-auto mb-2 mb-lg-0">
+                    <a class="nav-link text-light" asp-controller="Access" asp-action="Login">Iniciar sesión</a>
+                    </div>
+                <a class="btn btn-outline-light" asp-controller="Access" asp-action="Create">Suscríbete</a>
+                </div>
+
+        </div>
+    </nav>
+
+    @*Esto se queda*@
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="card-footer text-muted" style="min-height: 5vh">
+        <div class="container">
+            &copy; 2022 - GymSis - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

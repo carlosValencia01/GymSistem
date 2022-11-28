@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using GymSis.Models;
 using GymSis.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymSis.Controllers
 {
@@ -15,6 +16,8 @@ namespace GymSis.Controllers
         {
             _db = db;
         }
+        
+        public Gym Gym { get; set; }        
         public IActionResult Login()
         {
             ClaimsPrincipal claimUser = HttpContext.User;
@@ -24,7 +27,57 @@ namespace GymSis.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            return View();
+        }
 
+        public IActionResult ResetPassword()
+        {            
+            return View();
+        }
+
+            public async Task<IActionResult> OnPostResetPassword(Gym obj)
+            {
+            if (obj.Email == null) {
+                return View();
+            }
+            Gym = await _db.Gyms.FirstOrDefaultAsync(m => m.Email == obj.Email);
+
+            if (Gym == null)
+            {
+                //todo-usuario no encontrado alert
+                
+                
+                return RedirectToAction("ResetPassword");
+            }
+            Gym.Password = Services.CodeGenerator.generateCode();
+            //TODO-Enviar mail
+            _db.Gyms.Update(Gym);                     
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GymExists(Gym.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            //TODO-Mostrar alert de que se reseteo la contraseña
+            return RedirectToAction("Login");
+        }
+
+        private bool GymExists(int id)
+        {
+            return _db.Gyms.Any(e => e.Id == id);
+        }
+
+        public IActionResult Create()
+        {
             return View();
         }
 
