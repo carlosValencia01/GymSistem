@@ -16,7 +16,7 @@
 <body style="background: -webkit-linear-gradient(270deg, black 60%, MidnightBlue); min-height: 100vh;">
 
     <div class="d-flex justify-content-center">
-        <h1 class="text-light mt-4">Iniciar sesión</h1>
+        <h1 class="text-light mt-4">Registrar</h1>
     </div>
 
     <div class="row">
@@ -24,7 +24,7 @@
         <div class="col-8">
             <div style="background: -webkit-linear-gradient(180deg, #29252e, #330172 );"
                  class="mt-4 p-4">
-                <form asp-controller="Access" asp-action="Login" method="post">
+                <form asp-controller="Access" asp-action="OnPostCreate" method="post">
                     <div class="p-3">
 
                         <div class="mb-3">
@@ -33,15 +33,36 @@
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="text-muted mb-2"></label>
+                            <input asp-for="Name" type="text" placeholder="Nombre" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="text-muted mb-2"></label>
+                            <input asp-for="Phone" type="tel" placeholder="Telefono" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+
                         <div class="mb-3">
                             <label asp-for="Password" class="text-muted mb-2"></label>
-                            <input asp-for="Password" type="password" placeholder="Password" class="form-control" />
+                            <input asp-for="Password" type="password" placeholder="Contraseña" class="form-control" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="text-muted mb-2"></label>
+                            <input asp-for="ConfirmPassword" type="password" placeholder="Confirmar Contraseña" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+
                         <div class="mt-4">
-                            <button class="btn btn-primary w-25" type="submit">Login</button>
-                            <a asp-controller="Access" asp-action="ResetPassword" class="text-muted mx-4 text-decoration-none">¿Olvidaste la contraseña?</a>
+                            <button class="btn btn-primary w-25" type="submit">Registrar</button>
+                            <a asp-controller="Access" asp-action="Login" class="text-muted mx-4 text-decoration-none">Iniciar Sesión</a>
                         </div>
 
                         @if (ViewData["ValidateMessage"] != null)

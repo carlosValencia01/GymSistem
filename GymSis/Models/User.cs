@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GymSis.Models
 {
@@ -10,7 +12,9 @@ namespace GymSis.Models
         public string LastName { get; set; }
         public string Phone { get; set; }
         public DateTime ExpMembership { get; set; }
+        [ForeignKey("Gym")]
         public int IdGym { get; set; }
+        [DefaultValue("true")]
         public bool Status { get; set; }
 
     }

@@ -7,6 +7,7 @@ using GymSis.Models;
 using GymSis.Data;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace GymSis.Controllers
 {
     public class AccessController : Controller
@@ -79,6 +80,43 @@ namespace GymSis.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OnPostCreate(Gym obj)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(obj);
+            }
+                _db.Gyms.Add(obj);
+                await _db.SaveChangesAsync();
+            //TODO-Mostrar alert de que ya se registro
+                return RedirectToAction("Login");
+        }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyEmail(string email)
+        {            
+            if (!IsEmailAvailable(email))
+            {
+                return Json($"Email {email} ya ha sido registrado.");
+            }
+            return Json(true);
+        }
+
+
+        public bool IsEmailAvailable(string Tag)
+        {           
+                try
+                {
+                    var tag = _db.Gyms.Single(m => m.Email == Tag);
+                return false;
+                }
+                catch (Exception)
+                {
+                return true;
+                }            
         }
 
 

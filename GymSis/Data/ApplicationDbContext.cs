@@ -15,6 +15,8 @@ namespace GymSis.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Sales> Sales { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
+
 
     }
 }
