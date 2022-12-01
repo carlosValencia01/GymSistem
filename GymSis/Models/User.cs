@@ -14,6 +14,7 @@ namespace GymSis.Models
         public DateTime ExpMembership { get; set; }
         [ForeignKey("Gym")]
         public int IdGym { get; set; }
+        public virtual Gym? Gym { get; set; }
         [DefaultValue("true")]
         public bool Status { get; set; }
 

@@ -11,7 +11,8 @@ namespace GymSis.Models
     {
         [Key]        
         public int Id { get; set; }
-        [Remote(action: "VerifyEmail", controller: "Access")]
+        //[Remote(action: "VerifyEmail", controller: "Access")]
+        //Este hacerlo unique
         public string Email { get; set; }
         [DisplayName("Nombre")]
         public string Name { get; set; }
